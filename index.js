@@ -87,8 +87,20 @@ app.get('/delete-task/:taskId', (req, res) => {
 		data = JSON.stringify(tasks, null, 2)
 		writeFile('./tasks.json', data)
 			// redirect to / to see result
-			re.redirect('/')
+			res.redirect('/')
 	})
+})
+
+app.get('/delete-all', (req, res) => {
+	readFile('./tasks.json')
+	.then(tasks => {
+		tasks.splice(0, tasks.length)
+		data = JSON.stringify(tasks, null, 2)
+		writeFile('./tasks.json', data)
+		// redirect to / to see result
+		res.redirect('/')
+	})
+	
 })
 
 app.listen(3001, () => {
