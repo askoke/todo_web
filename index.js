@@ -40,7 +40,10 @@ app.get('/', (req, res) => {
 	readFile('./tasks.json')
 	.then(tasks => {
 		console.log(tasks)
-		res.render('index', {tasks: tasks})
+		res.render('index', {
+			tasks: tasks, 
+			error: null
+		})
 	})
 })
 
